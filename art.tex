@@ -1,0 +1,113 @@
+\ifdefined\PROCINCLUDED
+%
+\else
+%%% Please, do not change any of the following parameters.
+\documentclass[b5paper,twoside,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\voffset=-0.04cm
+\headheight=0.6cm
+\headsep=0.65cm
+\textheight=19.5cm
+\footskip=1.25cm
+\voffset=-0.04cm
+\textwidth=12.6cm
+\marginparsep=0cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+\marginparwidth=0cm
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{blindtext} 
+\usepackage{tocloft}
+\usepackage[labelsep=period]{caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup[table]{skip=7pt}
+\captionsetup[figure]{skip=6pt}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[LE]{\thepage}
+\fancyfoot[RO]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\date{}
+\def \papertitle#1{\title{#1}}
+\pagestyle{fancy}
+\def\insertauthor#1#2{
+	\begin{minipage}[t]{.45\textwidth}
+		\centering
+		{\em#1} \\ \vspace*{0.25em}
+		#2 \\ \vspace*{1.25em}
+	\end{minipage}
+}
+\def\paperauthors#1{
+	\author{
+	\begin{minipage}[t]{\textwidth}
+	\centering
+	#1
+	\end{minipage}
+	}
+}
+\def\email#1{\\{\small\protect\url{#1}}}
+\def\runningtitle#1{\fancyhead[CO]{\textit{#1}}}
+\def\runningauthor#1{\fancyhead[CE]{\textit{#1}}}
+\graphicspath{ {figures/} } %%% put all images file into "figures/" subdirectory
+\renewcommand{\figurename}{Figure}
+\begin{document}
+\fi
+
+\papertitle{}
+\paperauthors{
+%%% insert one \insertauthor for each article author, \email part is optional
+\insertauthor{Filip Rynkiewicz}{Institute of Information Technology, Lodz University of Technology, ul. Wolczanska 215, 90-924 Lodz, Poland \email{173186@edu.p.lodz.pl}}
+\insertauthor{Piotr Napieralski}{Institute of Information Technology, Lodz University of Technology, ul. Wolczanska 215, 90-924 Lodz, Poland \email{piotr.napieralski@p.lodz.pl}}
+}
+\runningtitle{Lodz University of Technology} %%% brief title for running head
+\runningauthor{Rynkiewicz, F. et al.} %%% brief authors for running head
+
+
+\graphicspath{ {images/} }
+
+
+\maketitle
+
+
+
+\nocite{*}
+
+
+\begin{abstract}
+Since the beginning of computer era we are trying to modeling nature. The results of those attempts are mathematical equations describing weather, snow flakes, plant growth or influence of species in individual biomes. In computer graphics fractal structure are often used because equations describing them are very simple. Those forms are common in nature. Self-similar fractals are created in computer graphics using Lindenmayer Systems. The analysis of the efficiency of this algorithm in modeling 3D tree triangle meshes for games is presented in the paper. The general motivation of this research and paper is to create algorithm to procedural modeling and simplified edition of complicated 3D tree models. By combining L-systems with Bézier curve there is a possibility to produce complicated 3D models. For example 3D tree mesh with 468 branches having 87200 vertices is created very fast. Time-consuming modeling in 3D programs can be replaced by solution described in this article. 
+\end{abstract}
+
+%%% insert your contribution here
+
+\section{Introduction}
+
+
+\subsection{Parametric L-system}
+
+
+
+\section{Conclusion}
+
+\begin{thebibliography}{99}
+\small
+
+
+\end{thebibliography}
+
+\ifdefined\PROCINCLUDED
+%
+\else
+\end{document}
+\fi
