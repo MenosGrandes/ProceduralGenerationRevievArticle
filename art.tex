@@ -86,7 +86,7 @@
 
 
 \begin{abstract}
-This article presents a review of the procedural generation of customized building facade techniques. Articles described in this review shows multiple approaches to this task. From generating and evaluating grammars, using visual classification techniques,to generating full 3d model based on  image segmentation
+
 \end{abstract}
 
 %%% insert your contribution here
@@ -94,10 +94,39 @@ This article presents a review of the procedural generation of customized buildi
 \section{Introduction}
 
 
-\subsection{Parametric L-system}
+\section{Example-Based Model Synthesis}
+In article \cite{paulmerrell2007} the new approach of procedural modeling is presented. The idea behind this technique is based on \textit{texture synthesis}. Those techniques attempt to match the large scale stochastic properties of the example textures onto the new one. Expanding those algorithms into 3D space can add the posibility of creating unique 3D models.
+ The core of this technique is to divide model, provided by user, into multiple smaller and unique models, and then combine them in different sequences to create new individual meshes. Smaller models are called \textit{model pieces} or the \textit{building blocks}. 
+ \subsection{Consistency Problem}
+To create model from building blocks algorithm creates a 3D grid, and then assign the integer value of the model piece that occupies the space. In this exaple there are three models, as it is demonstrated at \figurename\ref{fig:1a}.
+Arranging models into randomly generated meshes will create models, but they will be inconsistent and unsatisfactory, as at \figurename\ref{fig:1b}. To create appropriate models without any levitating pieces, or other unwanted errors, a set rules must be added. Those restrictions will ensure that all pieces will fit together correctly and seamlessly. Consistancy of model will be preserved only when all rules will be obeyed by the model.
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{1a}
+		\caption{}
+		\label{fig:1a}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{1b}
+		\caption{}
+		\label{fig:1b}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{1c}
+		\caption{}
+		\label{fig:1c}
+	\end{subfigure}
+	\caption{ (a) A model composed of four model pieces, (b) An In-
+		consistent Model, (c) A Consistent Model}\label{fig:animals}
+\end{figure}
 
 
-
+\newpage
 \section{Conclusion}
 
 \bibliography{bib} 
