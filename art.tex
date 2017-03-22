@@ -99,8 +99,8 @@ In article \cite{paulmerrell2007} the new approach of procedural modeling is pre
  The core of this technique is to divide model, provided by user, into multiple smaller and unique models, and then combine them in different sequences to create new individual meshes. Smaller models are called \textit{model pieces} or the \textit{building blocks}. 
  \subsection{Method}
 To create model from building blocks algorithm creates a 3D grid, and then assign the integer value of the model piece, called \textit{label}, that occupies the space. In this exaple there are three models, as it is demonstrated at \figurename\ref{fig:1a}.
-Arranging models into randomly generated meshes will create models, but they will be inconsistent and unsatisfactory, as at \figurename\ref{fig:1b}. To create appropriate models without any levitating pieces, or other unwanted errors, a set rules must be added. Those restrictions will ensure that all pieces will fit together correctly and seamlessly. Consistancy of model will be preserved only when all rules will be obeyed by the model.
-\begin{figure}
+Arranging them into randomly generated meshes will create models, but they will be inconsistent and unsatisfactory, as at \figurename\ref{fig:1b}. To create appropriate models without any levitating pieces, or other unwanted errors, a set of rules must be added. Those restrictions will ensure that all pieces will fit together correctly and seamlessly. Consistancy of model will be preserved only when all rules will be obeyed by the model.
+\begin{figure}[!h]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=\textwidth]{1a}
@@ -125,31 +125,55 @@ Arranging models into randomly generated meshes will create models, but they wil
 		consistent Model, (c) A Consistent Model}\label{fig:animals}
 \end{figure}
 
-To check if the rules are not violated the Boolean function \textit{T} was created. This operation controls how vertices in 3D grid are labeled. If two adjacent labeled vertices are allowed to be next to one another $T(c_1,c_2) $ is equal to 1, otherwise is zero. The complete model \textit{M} is consistent only if for any two labaled vertices 
+To check if the rules are not violated the Boolean function \textit{T} was created. This operation controls how vertices in 3D grid are labelled. If two adjacent labelled vertices, $c_1 , c_2$ are allowed to be next to one another, $T(c_1,c_2) $ is equal to one, otherwise is zero. The complete model \textit{M} is consistent only if for any two labelled vertices that 
 \begin{equation}
 c_1,c_2 \in M, T(c_1,c_2)=1.
 \end{equation}
 
+
+When creating labelled vertices the conflicts will always occur. To minimize those errors \textit{global search of conflicts} was used.This algorithm will delete labelled vertices, which will create conflicts, from consideration. Once these labelled vertices are removed, a set of candidate labels will be create. Those candidates will be consider to add them to the model \textit{M} and this set is called $C(M)$, and it is updated every time the model changes. Algorithm to calculate $C(M)$ is provided at \figurename\ref{CMCalc}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.85	\textwidth]{calcC}
-		\caption{C(M) calculations}
+	\makebox{
+		\scalebox{0.35}{\includegraphics*[viewport=0 250 900 527]{calcC}}
+	}	
+	%\caption{C(M) calculations}
+
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\makebox{
+		\scalebox{0.35}{\includegraphics*[viewport=0 0 900 250]{calcC}}
+	}	
+	\caption{C(M) calculations}
 	\label{CMCalc}
 \end{figure}
-Creating labeled vertices the conflicts will always occure. To minimize those errors the global search of conflicts was used. Algorithm will delete labaled vertices which will create conflicts from consideration. Once these labeled vertices are removed, a set of candidate labels will be create. Those candidated will be consider to add them to the model \textit{M} and this set is called $C(M)$. $C(M)$ is updated every time the model changes. Algorith to calculate $C(M)$ is provided at \figurename\ref{CMCalc}.
 
-After the conflicts will be removed the model synthesis may start.
 
-\begin{figure}[h]
+Next part of this method is to synthesize the model. At \figurename\ref{ModSynth} the algorithm begin with empty space over a plane. The \textit{B} is set of vertices chosen to modify. Then the consistency is calculated at the B region, so the $C(M)$ function is used. The new model $M_0$ is created with all the old labels in B removed. For each vertex in B, a new label is selected at random from  list of candidate labels $C(M_0 )$ and assigned to the vertex. Then all steps are repeated for new region \textit{B}.
+
+
+\begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.9	\textwidth]{modelSynthesis}
+	\includegraphics[width=1.1	\textwidth]{modelSynthesis}
 	\caption{An example illustrating the Model Synthesis Algorithm}
 	\label{ModSynth}
 \end{figure}
-As at \figurename\ref{ModSynth} the algorithm begin with empty space over a plane. The \textit{B} is set of vertices choosen to modify. Then the consistency is calculated at the B region, so the $C(M)$ function is used. The new model $M_0$ is created with all the old labels in B removed. For each vertex in B, a new label is selected at random from  list of candidate labels $C(M_0 )$ and assigned to the vertex. Then all steps are repeted for new region \textit{B}.
 
-The examples of meshes created by this technique is presented at \figurename
 
+
+But what about the resemblance to the example model? To ensure that, the small regions of the new model should approximately match other regions in the example. Let $w(v,M)$ be a small cubic region of the model \textit{M} centred on the vertex $v$ which has the width of $2w +1$ pieces.
+\begin{equation}
+w(v,M) = {(q,k)|(v+q,k) \in M \:\mathtt{and}\: q\in [-w...w]^3}
+\end{equation}
+The perceptual distance \textit{d} between two sets is defined as the number of model pieces that are not shared between the two sets which is :
+\begin{equation}
+d(P,Q) = |P| - |P \cap Q|
+\end{equation}
+$|P|$ is the cardinality of the set $P$.
+To apply this the selection of labels at the model synthesis part of this algorithm need to be changed. The
+
+The examples of meshes created by this technique is presented at \figurename\ref{exampleMS}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9	\textwidth]{exampleMS}
